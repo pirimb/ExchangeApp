@@ -1,0 +1,26 @@
+﻿
+@using currency_exchange.Controllers
+@{
+    ViewData["Title"] = "IndexPost";
+    var valCurs = ViewData["Valcurs"] as ValCurs;
+    var passedData = ViewData["PassedData"] as PassedData;
+}
+
+
+<div>
+    <div class="col-md-12">
+        <h6>
+            @if (@valCurs != null)
+            {
+                @valCurs.ValType[1].Valute[2].Code
+            }
+            @if (@passedData != null)
+            {
+                @passedData.Date
+                <input type="text" name="name" value="@ViewBag.Name" />
+                <input type="text" name="value" value="@ViewBag.Value" />
+            }
+        </h6>
+    </div>
+</div>
+

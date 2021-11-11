@@ -1,0 +1,83 @@
+﻿@using currency_exchange.Models
+@model ExchangeViewModel
+@{
+    //var valCurs = ViewData["Valcurs"] as ValCurs;
+    //var passedData = ViewData["PassedData"] as PassedData;
+}
+
+<div>
+    <p class="popout">
+        <span>E</span>
+        <span>X</span>
+        <span>C</span>
+        <span>H</span>
+        <span>A</span>
+        <span>N</span>
+        <span>G</span>
+        <span>E</span><br>
+        <span>A</span>
+        <span>P</span>
+        <span>P</span>
+
+    </p>
+
+    <div class="row containerr">
+
+
+        <div class="col-md-6">
+            <form class="form-group" asp-controller="home" asp-action="Index" method="post">
+
+                <div class="select-group">
+                    <select class="select-css" asp-for="passedData.FromValute" asp-items="@(new SelectList(Model.codes, "codes"))">
+                        <option value="">From</option>
+                    </select>
+
+
+                    <select class="select-css" asp-for="passedData.ToValute" asp-items="@(new SelectList(Model.codes, "codes"))">
+                        <option value="">To</option>
+                    </select>
+
+                </div>
+
+
+
+                <div class="group">
+                    <input class="input" asp-for="passedData.AmountMoney" type="number" />
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Amount of money</label>
+                </div>
+                <div class="group">
+                    <input asp-for="passedData.Date" type="date" />
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Date</label>
+                </div>
+
+                <button class="btn" type="submit" value="Exchange">Exchange</button>
+            </form>
+        </div>
+        <div class="col-md-6 rigth_container">
+            <div class="rigth_container-answers">
+                @if (@Model.passedData.AmountMoney != 0)
+                {
+
+                    <div class="rigth_container-date"><span class="span"><p>@Model.passedData.Date</p></span></div>
+
+                    <div class="rigth_container-price"><p class="amount_span">1 @Model.passedData.FromValute = @ViewBag.PriceFromToValute @Model.passedData.ToValute </p></div>
+                    <div class="rigth_container-amount">
+                        <p class="amount_span">
+                            @Model.passedData.AmountMoney @Model.passedData.FromValute = @ViewBag.AmountMoneyFromTo @Model.passedData.ToValute
+                        </p>
+                    </div><br />
+                }
+                else
+                {
+                    <div class="amount_span">  Amount of money for exchange = 0.Please fiil correctly  </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
